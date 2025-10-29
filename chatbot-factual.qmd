@@ -1,0 +1,363 @@
+---
+pagetitle: "Presentacion"
+format:
+  revealjs:
+    css: ine_quarto_style_v2025_v2.css
+    width: 2560      # ancho lógico de la slide
+    height: 1440     # alto lógico de la slide
+    margin: 0
+---
+
+## { .portada  #portada}
+
+<div class="logo-box">
+  <img src="imagenes/logo_portada3.png">
+</div>
+
+<div class="title-area">
+  <h1>Presentaciones internas: Chatbot factual</h1>
+  
+  <h2>Unidad de Gobierno de Datos</h2>
+  
+  <p><strong>30 de octubre 2025</strong></p>
+</div>
+
+
+## Contenidos 
+
+- Inspiración
+- Arquitectura
+  - Open-WebUI
+  - Ollama
+  - PostgreSQL
+- Desafíos
+- Demostración en vivo
+- Próximos pasos
+
+## Inspiración
+
+**El problema de las alucinaciones en LLMs**
+
+- Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o "alucinar"
+- Para usuarios que buscan **estadísticas oficiales**, esto representa un riesgo significativo
+- La confiabilidad de los datos es fundamental en nuestro contexto
+
+**Nuestra solución**
+
+- Desarrollamos una herramienta que se conecta **directamente a datos oficiales**
+- Garantiza respuestas basadas en información verificada y autorizada
+- Combina la interacción natural de un chatbot con la precisión de datos oficiales
+
+## Arquitectura
+
+:::: {.columns}
+
+::: {.column width="30%"}
+**Solución basada en contenedores Docker**
+
+Tres componentes principales que interactúan entre sí:
+
+- **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
+- **Ollama**: Motor de inferencia para los modelos de lenguaje
+- **PostgreSQL**: Base de datos para almacenamiento persistente
+:::
+
+::: {.column width="70%"}
+![](imagenes/diagrama_chatbot_factual.png){width=100% height=auto}
+:::
+
+::::
+
+## Open-WebUI
+
+:::: columns
+
+::: {.column width="55%}
+**¿Qué es Open-WebUI?**
+
+::: incremental
+- Interfaz web de código abierto diseñada para interactuar con modelos de lenguaje
+- Experiencia similar a ChatGPT pero auto-hospedada (_self-hosted_)
+- Al ser open source, es altamente personalizable y extensible
+:::
+
+**Características principales**
+
+::: incremental
+- Interfaz de chat intuitiva y moderna
+- Soporte para múltiples modelos simultáneos
+- Sistema de **herramientas (tools)** personalizables basadas en Python  para extender funcionalidades
+- Gestión de usuarios y permisos
+- Historial de conversaciones persistente
+:::
+
+:::
+
+::: {.column  width="45%"}
+
+::: incremental
+**En el proyecto**
+
+- Actúa como la capa de presentación del chatbot
+- Permite a los usuarios hacer consultas en lenguaje natural
+- Integra herramientas personalizadas para acceder a datos oficiales
+- Facilita la autenticación y gestión de sesiones
+:::
+
+**Ventajas**
+
+::: incremental
+- No depende de servicios externos
+- Control total sobre datos y privacidad
+- Muchísimo más sencillo que desarrollar nuestro propio software de chat.
+:::
+
+::: {.align-right}
+![](imagenes/owui.png){height=400px}
+:::
+
+:::
+
+::::
+
+
+## Open-WebUI
+
+::: align-center
+![](imagenes/pantallazo_owui.png){height=1000px }
+:::
+
+
+## Ollama
+
+:::: columns
+
+::: {.column width="55%"}
+**¿Qué es Ollama?**
+
+::: incremental
+- Plataforma de código abierto para ejecutar LLMs localmente
+- Simplifica su descarga, gestión y ejecución
+:::
+
+**Características clave**
+
+::: incremental
+- Soporte para múltiples modelos (Qwen, Llama, Gemma, etc.)
+- Gestión automática de memoria y recursos
+- Optimizaciones de rendimiento para CPUs y GPUs
+- API compatible con OpenAI haciendo fácil su integración
+:::
+
+:::
+
+::: {.column width="45%"}
+
+**En nuestro proyecto**
+
+::: incremental
+- Motor de inferencia que procesa las consultas del usuario
+- Ejecuta el modelo de lenguaje que interpreta preguntas
+- Genera respuestas contextuales basadas en la información disponible
+- Se comunica con Open-WebUI a través de su API
+:::
+
+**Ventajas**
+
+::: incremental
+- Ejecución local sin dependencia de APIs externas 
+- Control sobre versiones de modelos
+- Latencia reducida al eliminar llamadas a servicios remotos
+- Sin límites de uso o costos por token
+:::
+
+::: {.align-right}
+![](imagenes/ollama.png){height=200px}
+:::
+
+:::
+
+::::
+
+## PostgreSQL
+
+- Ya sabemos qué es PostgreSQL, pero aprovecho de mostrar la estructura de las bases de datos.
+
+![](imagenes/sql.PNG){height=750px}
+
+- Podríamos quitar columnas para disminuir la complejidad del trabajo de la LLM: debiésemos apuntar
+a mantener la información mínima posible para que cumpla su tarea con éxito.
+
+## PostgreSQL
+
+- Ya sabemos qué es PostgreSQL, pero aprovecho de mostrar la estructura de las bases de datos.
+
+![](imagenes/sql2.PNG){height=750px}
+
+- Podríamos quitar columnas para disminuir la complejidad del trabajo de la LLM: debiésemos apuntar
+a mantener la información mínima posible para que cumpla su tarea con éxito.
+
+
+## Desafíos
+
+**Documentación limitada**
+
+- Open-WebUI presenta documentación deficiente
+- Necesidad de explorar el código fuente directamente
+- Ajustes específicos como carga de modelos y herramientas requieren investigación profunda
+  - Vamos a tener que ver cómo darle memoria a las herramientas del modelo.
+- Configuración para persistencia al detener contenedores
+
+## Desafíos
+
+:::: columns
+
+::: {.column width="50%"}
+
+::: {.fragment fragment-index=1}
+**Ejemplo: mala documentación**. Quería cargar mis herramientas (básicamente funciones de Python con configuración extra) 
+directamente al levantar la imagen. Caso contrario tengo que importarlas cada vez que levanto la imagen.
+:::
+
+::: {.fragment fragment-index=2}
+La documentación solo menciona la opción de importar o exportar herramientas. 
+Queda como opción revisar el código fuente hasta encontrar dónde se mencionan las herramientas
+que desarrollé.
+:::
+
+::: {.fragment fragment-index=3}
+Encuentro que se mencionan en un archivo `webui.db`, es decir, en una base de datos de SQLite.
+:::
+
+::: {.fragment fragment-index=5}
+**Solución**: exportar herramienta configurada como `.json`, luego crear un script que poble las
+bases de datos desde los `.json` al levantar la imagen
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.r-stack}
+
+::: {.fragment .fade-in-then-out fragment-index=1} 
+![](imagenes/owui_tool.png){height=1000px}
+
+:::
+
+
+
+::: {.fragment .fade-in-then-out fragment-index=3} 
+
+![](imagenes/webui_db.png){height="1000px"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=4} 
+
+![](imagenes/owui_tool_match.png){width="1000px"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=5} 
+
+![](imagenes/tool_json.png){width="1000px"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=6} 
+
+![](imagenes/import_tools.png){width="900px"}
+:::
+
+:::
+
+:::
+
+::::
+
+## Desafíos
+
+:::: columns
+
+::: {.column width="50%"}
+**Ejemplo: falta de memoria en herramienta**. 
+
+::: {.fragment fragment-index=1}
+Para un primer mensaje funciona bien
+:::
+
+::: {.fragment fragment-index=3}
+Sin embargo, al tratar de continuar la interacción utilizando lenguaje natural,
+esta falla.
+:::
+
+::: {.fragment fragment-index=4}
+Al investigar, se ve que es un problema de falta de contexto.
+:::
+
+::: {.fragment fragment-index=5}
+Actualmente investigando potenciales soluciones 🔍
+:::
+
+
+:::
+
+
+::: {.column width="50%"}
+
+
+:::: r-stack
+::: {.fragment .fade-out fragment-index=2}
+![Funciona bien originalmente](imagenes/ejemplo_2_1.png){width="1500px"}
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=3}
+![Siguiente interacción falla (valor mujeres es falso)](imagenes/ejemplo_2_2.png){width="1500px"}
+:::
+
+
+::: {.fragment .fade-in fragment-index=4}
+![Vemos que herramienta recibe mensaje libre de contexto](imagenes/ejemplo_2_3.png){width="1500px"}
+:::
+
+
+::::
+
+:::
+::::
+## Desafíos
+
+**Escalabilidad**
+
+- Cargar un LLM es computacionalmente intensivo
+- Dificultad para servir a múltiples usuarios simultáneos
+- Requiere planificación cuidadosa de recursos
+
+## Demostración en vivo
+
+Y ahora veremos [cómo funciona en la práctica](http://10.0.40.64:3030/)
+
+## Próximos pasos
+
+**Expansión y mejoras**
+
+::: {.incremental}
+- **Ampliar cobertura**: Expandir el número de indicadores disponibles
+- **Desarrollo de API**: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas
+- **Protocolo MCP**: Evaluar la implementación de Model Context Protocol (MCP) para las herramientas
+- **Más pruebas de seguridad**: Si bien no hemos tenido problemas, tenemos que asegurarnos que en una gran mayoría de casos
+  el chatbot no entregue información inventada.
+:::
+
+## { .portada #cierre}
+
+<div class="logo-box">
+  <img src="imagenes/logo_portada3.png" class="portada-logo" alt="Logo">
+</div>
+
+<div class="title-area">
+  <h1>Presentaciones internas: Chatbot factual</h1>
+  
+  <h2>Unidad de Gobierno de Datos</h2>
+  
+  <p><strong>30 de octubre 2025</strong></p>
+</div>
+
