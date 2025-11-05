@@ -147,7 +147,7 @@ Unidad de Gobierno de Datos
 <section id="contenidos" class="slide level2">
 <h2>Contenidos</h2>
 <ul>
-<li>Inspiración</li>
+<li>Motivación</li>
 <li>Arquitectura
 <ul>
 <li>Open-WebUI</li>
@@ -159,20 +159,59 @@ Unidad de Gobierno de Datos
 <li>Próximos pasos</li>
 </ul>
 </section>
-<section id="inspiración" class="slide level2">
-<h2>Inspiración</h2>
+<section id="motivación" class="slide level2">
+<h2>Motivación</h2>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+<div style="display: flex; align-items: center; gap: 20px;">
+<div class="r-stack">
+<p><img data-src="imagenes/juan.png" width="350" height="400"></p>
+<div class="fragment" data-fragment-index="3">
+<p><img data-src="imagenes/chad.jpg" width="350" height="400"></p>
+</div>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="imagenes/dialog1.png"></p>
+</div>
+<div class="fragment" data-fragment-index="3">
+<p><img data-src="imagenes/dialog3.png"></p>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 20px;">
+<div class="r-stack">
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="imagenes/dialog2.png"></p>
+</div>
+</div>
+<p><img data-src="imagenes/mirror.gif"></p>
+</div>
+</div>
+<div class="fragment" data-fragment-index="4">
 <p><strong>El problema de las alucinaciones en LLMs</strong></p>
 <ul>
-<li>Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o “alucinar”</li>
-<li>Para usuarios que buscan <strong>estadísticas oficiales</strong>, esto representa un riesgo significativo</li>
-<li>La confiabilidad de los datos es fundamental en nuestro contexto</li>
-</ul>
-<p><strong>Nuestra solución</strong></p>
+<li class="fragment">Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o “alucinar”
 <ul>
-<li>Desarrollamos una herramienta que se conecta <strong>directamente a datos oficiales</strong></li>
-<li>Garantiza respuestas basadas en información verificada y autorizada</li>
+<li class="fragment">Además tienden a halagar de más a los usuarios (sicofancia LLM)</li>
+</ul></li>
+<li class="fragment">Para usuarios que buscan <strong>estadísticas oficiales</strong>, esto representa un riesgo significativo</li>
+<li class="fragment">La confiabilidad de los datos es fundamental en nuestro contexto</li>
+</ul>
+</div>
+</section>
+<section id="solución" class="slide level2">
+<h2>Solución</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="imagenes/meme.png"></p>
+</div><div class="column">
+<ul>
+<li>Desarrollamos un chatbot que se conecta <strong>directamente a datos oficiales</strong></li>
+<li>Se le “enseña” a no dar información que no conozca</li>
+<li>Esto garantizaría respuestas basadas en información verificada y autorizada</li>
 <li>Combina la interacción natural de un chatbot con la precisión de datos oficiales</li>
 </ul>
+</div></div>
 </section>
 <section id="arquitectura" class="slide level2">
 <h2>Arquitectura</h2>
@@ -236,7 +275,7 @@ Unidad de Gobierno de Datos
 <h2>Ollama</h2>
 <div class="columns">
 <div class="column" style="width:55%;">
-<p><strong>¿Qué es Ollama?</strong></p>
+<p><strong>¿Qué es?</strong></p>
 <ul>
 <li class="fragment">Plataforma de código abierto para ejecutar LLMs localmente</li>
 <li class="fragment">Simplifica su descarga, gestión y ejecución</li>
@@ -349,10 +388,11 @@ Unidad de Gobierno de Datos
 <p>Sin embargo, al tratar de continuar la interacción utilizando lenguaje natural, esta falla.</p>
 </div>
 <div class="fragment" data-fragment-index="4">
-<p>Al investigar, se ve que es un problema de falta de contexto.</p>
+<p>Al investigar, se ve que es un problema de contexto.</p>
 </div>
 <div class="fragment" data-fragment-index="5">
-<p>Actualmente investigando potenciales soluciones 🔍</p>
+<p><del>Actualmente investigando potenciales soluciones 🔍</del></p>
+<p>Al cambiar el flujo de las herramientas comenzó a funcionar.</p>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
@@ -403,7 +443,7 @@ Unidad de Gobierno de Datos
 <li class="fragment"><strong>Ampliar cobertura</strong>: Expandir el número de indicadores disponibles</li>
 <li class="fragment"><strong>Desarrollo de API</strong>: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas</li>
 <li class="fragment"><strong>Protocolo MCP</strong>: Evaluar la implementación de Model Context Protocol (MCP) para las herramientas</li>
-<li class="fragment"><strong>Más pruebas de seguridad</strong>: Si bien no hemos tenido problemas, tenemos que asegurarnos que en una gran mayoría de casos el chatbot no entregue información inventada.</li>
+<li class="fragment"><strong>Más pruebas de seguridad</strong>: Tenemos que asegurarnos que en una gran mayoría de casos el chatbot no entregue información inventada.</li>
 </ul>
 </section>
 <section id="cierre" class="slide level2 portada">

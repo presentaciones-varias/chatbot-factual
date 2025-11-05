@@ -25,7 +25,7 @@ format:
 
 ## Contenidos 
 
-- Inspiración
+- Motivación
 - Arquitectura
   - Open-WebUI
   - Ollama
@@ -34,19 +34,73 @@ format:
 - Demostración en vivo
 - Próximos pasos
 
-## Inspiración
+## Motivación
 
+::: {style="display: flex; align-items: center; justify-content: space-between; gap: 20px;"}
+
+::: {style="display: flex; align-items: center; gap: 20px;"}
+
+::: r-stack
+
+![](imagenes/juan.png){height="400px" width="350px"}
+
+::: {.fragment fragment-index=3}
+![](imagenes/chad.jpg){height="400px" width="350px"}
+
+:::
+
+:::
+
+::: r-stack
+::: {.fragment .fade-in-then-out fragment-index=1 }
+![](imagenes/dialog1.png)
+:::
+:::  {.fragment fragment-index=3}
+![](imagenes/dialog3.png)
+:::
+:::
+:::
+
+::: {style="display: flex; align-items: center; gap: 20px;"}
+::: r-stack
+:::  {.fragment fragment-index=2}
+![](imagenes/dialog2.png)
+:::
+:::
+
+![](imagenes/mirror.gif)
+:::
+
+:::
+
+
+::: {.fragment fragment-index=4}
 **El problema de las alucinaciones en LLMs**
 
+::: incremental
 - Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o "alucinar"
+  - Además tienden a halagar de más a los usuarios (sicofancia LLM)
 - Para usuarios que buscan **estadísticas oficiales**, esto representa un riesgo significativo
 - La confiabilidad de los datos es fundamental en nuestro contexto
+:::
 
-**Nuestra solución**
+:::
 
-- Desarrollamos una herramienta que se conecta **directamente a datos oficiales**
-- Garantiza respuestas basadas en información verificada y autorizada
+## Solución
+
+
+::: columns
+::: column
+![](imagenes/meme.png)
+:::
+
+::: column
+- Desarrollamos un chatbot que se conecta **directamente a datos oficiales**
+- Se le "enseña" a no dar información que no conozca
+- Esto garantizaría respuestas basadas en información verificada y autorizada
 - Combina la interacción natural de un chatbot con la precisión de datos oficiales
+:::
+:::
 
 ## Arquitectura
 
@@ -133,7 +187,7 @@ Tres componentes principales que interactúan entre sí:
 :::: columns
 
 ::: {.column width="55%"}
-**¿Qué es Ollama?**
+**¿Qué es?**
 
 ::: incremental
 - Plataforma de código abierto para ejecutar LLMs localmente
@@ -290,11 +344,13 @@ esta falla.
 :::
 
 ::: {.fragment fragment-index=4}
-Al investigar, se ve que es un problema de falta de contexto.
+Al investigar, se ve que es un problema de contexto.
 :::
 
 ::: {.fragment fragment-index=5}
-Actualmente investigando potenciales soluciones 🔍
+~~Actualmente investigando potenciales soluciones 🔍~~
+
+Al cambiar el flujo de las herramientas comenzó a funcionar.
 :::
 
 
@@ -343,7 +399,7 @@ Y ahora veremos [cómo funciona en la práctica](http://10.0.40.64:3030/)
 - **Ampliar cobertura**: Expandir el número de indicadores disponibles
 - **Desarrollo de API**: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas
 - **Protocolo MCP**: Evaluar la implementación de Model Context Protocol (MCP) para las herramientas
-- **Más pruebas de seguridad**: Si bien no hemos tenido problemas, tenemos que asegurarnos que en una gran mayoría de casos
+- **Más pruebas de seguridad**: Tenemos que asegurarnos que en una gran mayoría de casos
   el chatbot no entregue información inventada.
 :::
 
