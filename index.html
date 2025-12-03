@@ -147,7 +147,6 @@ Unidad de Gobierno de Datos
 <section id="contenidos" class="slide level2">
 <h2>Contenidos</h2>
 <ul>
-<li>Motivación</li>
 <li>Arquitectura
 <ul>
 <li>Open-WebUI</li>
@@ -159,59 +158,14 @@ Unidad de Gobierno de Datos
 <li>Próximos pasos</li>
 </ul>
 </section>
-<section id="motivación" class="slide level2">
-<h2>Motivación</h2>
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-<div style="display: flex; align-items: center; gap: 20px;">
-<div class="r-stack">
-<p><img data-src="imagenes/juan.png" width="350" height="400"></p>
-<div class="fragment" data-fragment-index="3">
-<p><img data-src="imagenes/chad.jpg" width="350" height="400"></p>
-</div>
-</div>
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="imagenes/dialog1.png"></p>
-</div>
-<div class="fragment" data-fragment-index="3">
-<p><img data-src="imagenes/dialog3.png"></p>
-</div>
-</div>
-</div>
-<div style="display: flex; align-items: center; gap: 20px;">
-<div class="r-stack">
-<div class="fragment" data-fragment-index="2">
-<p><img data-src="imagenes/dialog2.png"></p>
-</div>
-</div>
-<p><img data-src="imagenes/mirror.gif"></p>
-</div>
-</div>
-<div class="fragment" data-fragment-index="4">
-<p><strong>El problema de las alucinaciones en LLMs</strong></p>
-<ul>
-<li class="fragment">Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o “alucinar”
-<ul>
-<li class="fragment">Además tienden a halagar de más a los usuarios (sicofancia LLM)</li>
-</ul></li>
-<li class="fragment">Para usuarios que buscan <strong>estadísticas oficiales</strong>, esto representa un riesgo significativo</li>
-<li class="fragment">La confiabilidad de los datos es fundamental en nuestro contexto</li>
-</ul>
-</div>
-</section>
-<section id="solución" class="slide level2">
-<h2>Solución</h2>
-<div class="columns">
-<div class="column">
-<p><img data-src="imagenes/meme.png"></p>
-</div><div class="column">
+<section id="idea" class="slide level2">
+<h2>Idea</h2>
 <ul>
 <li>Desarrollamos un chatbot que se conecta <strong>directamente a datos oficiales</strong></li>
 <li>Se le “enseña” a no dar información que no conozca</li>
 <li>Esto garantizaría respuestas basadas en información verificada y autorizada</li>
 <li>Combina la interacción natural de un chatbot con la precisión de datos oficiales</li>
 </ul>
-</div></div>
 </section>
 <section id="arquitectura" class="slide level2">
 <h2>Arquitectura</h2>
@@ -310,120 +264,14 @@ Unidad de Gobierno de Datos
 <section id="postgresql" class="slide level2">
 <h2>PostgreSQL</h2>
 <ul>
-<li>Ya sabemos qué es PostgreSQL, pero aprovecho de mostrar la estructura de las bases de datos.</li>
+<li>Esta es la estructura de las bases de datos.</li>
 </ul>
-<p><img data-src="imagenes/sql.PNG" height="750"></p>
+<p><img data-src="imagenes/sql_ti.PNG" height="750"></p>
 <ul>
-<li>Podríamos quitar columnas para disminuir la complejidad del trabajo de la LLM: debiésemos apuntar a mantener la información mínima posible para que cumpla su tarea con éxito.</li>
-</ul>
-</section>
-<section id="postgresql-1" class="slide level2">
-<h2>PostgreSQL</h2>
-<ul>
-<li>Ya sabemos qué es PostgreSQL, pero aprovecho de mostrar la estructura de las bases de datos.</li>
-</ul>
-<p><img data-src="imagenes/sql2.PNG" height="750"></p>
-<ul>
-<li>Podríamos quitar columnas para disminuir la complejidad del trabajo de la LLM: debiésemos apuntar a mantener la información mínima posible para que cumpla su tarea con éxito.</li>
+<li>Busca un sistema estándar que permita desagregar datos y contener datos nacionales dentro de la misma.</li>
 </ul>
 </section>
 <section id="desafíos" class="slide level2">
-<h2>Desafíos</h2>
-<p><strong>Documentación limitada</strong></p>
-<ul>
-<li>Open-WebUI presenta documentación deficiente</li>
-<li>Necesidad de explorar el código fuente directamente</li>
-<li>Ajustes específicos como carga de modelos y herramientas requieren investigación profunda
-<ul>
-<li>Vamos a tener que ver cómo darle memoria a las herramientas del modelo.</li>
-</ul></li>
-<li>Configuración para persistencia al detener contenedores</li>
-</ul>
-</section>
-<section id="desafíos-1" class="slide level2">
-<h2>Desafíos</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment" data-fragment-index="1">
-<p><strong>Ejemplo: mala documentación</strong>. Quería cargar mis herramientas (básicamente funciones de Python con configuración extra) directamente al levantar la imagen. Caso contrario tengo que importarlas cada vez que levanto la imagen.</p>
-</div>
-<div class="fragment" data-fragment-index="2">
-<p>La documentación solo menciona la opción de importar o exportar herramientas. Queda como opción revisar el código fuente hasta encontrar dónde se mencionan las herramientas que desarrollé.</p>
-</div>
-<div class="fragment" data-fragment-index="3">
-<p>Encuentro que se mencionan en un archivo <code>webui.db</code>, es decir, en una base de datos de SQLite.</p>
-</div>
-<div class="fragment" data-fragment-index="5">
-<p><strong>Solución</strong>: exportar herramienta configurada como <code>.json</code>, luego crear un script que poble las bases de datos desde los <code>.json</code> al levantar la imagen</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-<p><img data-src="imagenes/owui_tool.png" height="1000"></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="3">
-<p><img data-src="imagenes/webui_db.png" height="1000"></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="4">
-<p><img data-src="imagenes/owui_tool_match.png" width="1000"></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="5">
-<p><img data-src="imagenes/tool_json.png" width="1000"></p>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="6">
-<p><img data-src="imagenes/import_tools.png" width="900"></p>
-</div>
-</div>
-</div></div>
-</section>
-<section id="desafíos-2" class="slide level2">
-<h2>Desafíos</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Ejemplo: falta de memoria en herramienta</strong>.</p>
-<div class="fragment" data-fragment-index="1">
-<p>Para un primer mensaje funciona bien</p>
-</div>
-<div class="fragment" data-fragment-index="3">
-<p>Sin embargo, al tratar de continuar la interacción utilizando lenguaje natural, esta falla.</p>
-</div>
-<div class="fragment" data-fragment-index="4">
-<p>Al investigar, se ve que es un problema de contexto.</p>
-</div>
-<div class="fragment" data-fragment-index="5">
-<p><del>Actualmente investigando potenciales soluciones 🔍</del></p>
-<p>Al cambiar el flujo de las herramientas comenzó a funcionar.</p>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="r-stack">
-<div class="fragment fade-out" data-fragment-index="2">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="imagenes/ejemplo_2_1.png" width="1500"></p>
-<figcaption>Funciona bien originalmente</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in-then-out" data-fragment-index="3">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="imagenes/ejemplo_2_2.png" width="1500"></p>
-<figcaption>Siguiente interacción falla (valor mujeres es falso)</figcaption>
-</figure>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="4">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="imagenes/ejemplo_2_3.png" width="1500"></p>
-<figcaption>Vemos que herramienta recibe mensaje libre de contexto</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="desafíos-3" class="slide level2">
 <h2>Desafíos</h2>
 <p><strong>Escalabilidad</strong></p>
 <ul>
@@ -442,8 +290,16 @@ Unidad de Gobierno de Datos
 <ul>
 <li class="fragment"><strong>Ampliar cobertura</strong>: Expandir el número de indicadores disponibles</li>
 <li class="fragment"><strong>Desarrollo de API</strong>: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas</li>
-<li class="fragment"><strong>Protocolo MCP</strong>: Evaluar la implementación de Model Context Protocol (MCP) para las herramientas</li>
 <li class="fragment"><strong>Más pruebas de seguridad</strong>: Tenemos que asegurarnos que en una gran mayoría de casos el chatbot no entregue información inventada.</li>
+</ul>
+</section>
+<section id="discusión" class="slide level2">
+<h2>Discusión</h2>
+<ul>
+<li><p>¿Es posible replicar esta arquitectura en Azure?</p></li>
+<li><p>¿Sería una posibilidad reemplazar modelos open source con modelos privados a través de sus APIs?</p></li>
+<li><p>¿Qué adecuaciones habría que hacer?</p></li>
+<li><p>¿Cuál es el horizonte de financiamiento?</p></li>
 </ul>
 </section>
 <section id="cierre" class="slide level2 portada">
