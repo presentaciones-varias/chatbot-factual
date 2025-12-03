@@ -25,7 +25,7 @@ format:
 
 ## Contenidos 
 
-- Motivación
+
 - Arquitectura
   - Open-WebUI
   - Ollama
@@ -34,73 +34,15 @@ format:
 - Demostración en vivo
 - Próximos pasos
 
-## Motivación
 
-::: {style="display: flex; align-items: center; justify-content: space-between; gap: 20px;"}
-
-::: {style="display: flex; align-items: center; gap: 20px;"}
-
-::: r-stack
-
-![](imagenes/juan.png){height="400px" width="350px"}
-
-::: {.fragment fragment-index=3}
-![](imagenes/chad.jpg){height="400px" width="350px"}
-
-:::
-
-:::
-
-::: r-stack
-::: {.fragment .fade-in-then-out fragment-index=1 }
-![](imagenes/dialog1.png)
-:::
-:::  {.fragment fragment-index=3}
-![](imagenes/dialog3.png)
-:::
-:::
-:::
-
-::: {style="display: flex; align-items: center; gap: 20px;"}
-::: r-stack
-:::  {.fragment fragment-index=2}
-![](imagenes/dialog2.png)
-:::
-:::
-
-![](imagenes/mirror.gif)
-:::
-
-:::
+## Idea
 
 
-::: {.fragment fragment-index=4}
-**El problema de las alucinaciones en LLMs**
-
-::: incremental
-- Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o "alucinar"
-  - Además tienden a halagar de más a los usuarios (sicofancia LLM)
-- Para usuarios que buscan **estadísticas oficiales**, esto representa un riesgo significativo
-- La confiabilidad de los datos es fundamental en nuestro contexto
-:::
-
-:::
-
-## Solución
-
-
-::: columns
-::: column
-![](imagenes/meme.png)
-:::
-
-::: column
 - Desarrollamos un chatbot que se conecta **directamente a datos oficiales**
 - Se le "enseña" a no dar información que no conozca
 - Esto garantizaría respuestas basadas en información verificada y autorizada
 - Combina la interacción natural de un chatbot con la precisión de datos oficiales
-:::
-:::
+
 
 ## Arquitectura
 
@@ -235,150 +177,14 @@ Tres componentes principales que interactúan entre sí:
 
 ## PostgreSQL
 
-- Ya sabemos qué es PostgreSQL, pero aprovecho de mostrar la estructura de las bases de datos.
+- Esta es la estructura de las bases de datos.
 
-![](imagenes/sql.PNG){height=750px}
+![](imagenes/sql_ti.PNG){height=750px}
 
-- Podríamos quitar columnas para disminuir la complejidad del trabajo de la LLM: debiésemos apuntar
-a mantener la información mínima posible para que cumpla su tarea con éxito.
-
-## PostgreSQL
-
-- Ya sabemos qué es PostgreSQL, pero aprovecho de mostrar la estructura de las bases de datos.
-
-![](imagenes/sql2.PNG){height=750px}
-
-- Podríamos quitar columnas para disminuir la complejidad del trabajo de la LLM: debiésemos apuntar
-a mantener la información mínima posible para que cumpla su tarea con éxito.
+- Busca un sistema estándar que permita desagregar datos y contener datos nacionales
+dentro de la misma.
 
 
-## Desafíos
-
-**Documentación limitada**
-
-- Open-WebUI presenta documentación deficiente
-- Necesidad de explorar el código fuente directamente
-- Ajustes específicos como carga de modelos y herramientas requieren investigación profunda
-  - Vamos a tener que ver cómo darle memoria a las herramientas del modelo.
-- Configuración para persistencia al detener contenedores
-
-## Desafíos
-
-:::: columns
-
-::: {.column width="50%"}
-
-::: {.fragment fragment-index=1}
-**Ejemplo: mala documentación**. Quería cargar mis herramientas (básicamente funciones de Python con configuración extra) 
-directamente al levantar la imagen. Caso contrario tengo que importarlas cada vez que levanto la imagen.
-:::
-
-::: {.fragment fragment-index=2}
-La documentación solo menciona la opción de importar o exportar herramientas. 
-Queda como opción revisar el código fuente hasta encontrar dónde se mencionan las herramientas
-que desarrollé.
-:::
-
-::: {.fragment fragment-index=3}
-Encuentro que se mencionan en un archivo `webui.db`, es decir, en una base de datos de SQLite.
-:::
-
-::: {.fragment fragment-index=5}
-**Solución**: exportar herramienta configurada como `.json`, luego crear un script que poble las
-bases de datos desde los `.json` al levantar la imagen
-:::
-
-:::
-
-::: {.column width="50%"}
-
-::: {.r-stack}
-
-::: {.fragment .fade-in-then-out fragment-index=1} 
-![](imagenes/owui_tool.png){height=1000px}
-
-:::
-
-
-
-::: {.fragment .fade-in-then-out fragment-index=3} 
-
-![](imagenes/webui_db.png){height="1000px"}
-:::
-
-::: {.fragment .fade-in-then-out fragment-index=4} 
-
-![](imagenes/owui_tool_match.png){width="1000px"}
-:::
-
-::: {.fragment .fade-in-then-out fragment-index=5} 
-
-![](imagenes/tool_json.png){width="1000px"}
-:::
-
-::: {.fragment .fade-in-then-out fragment-index=6} 
-
-![](imagenes/import_tools.png){width="900px"}
-:::
-
-:::
-
-:::
-
-::::
-
-## Desafíos
-
-:::: columns
-
-::: {.column width="50%"}
-**Ejemplo: falta de memoria en herramienta**. 
-
-::: {.fragment fragment-index=1}
-Para un primer mensaje funciona bien
-:::
-
-::: {.fragment fragment-index=3}
-Sin embargo, al tratar de continuar la interacción utilizando lenguaje natural,
-esta falla.
-:::
-
-::: {.fragment fragment-index=4}
-Al investigar, se ve que es un problema de contexto.
-:::
-
-::: {.fragment fragment-index=5}
-~~Actualmente investigando potenciales soluciones 🔍~~
-
-Al cambiar el flujo de las herramientas comenzó a funcionar.
-:::
-
-
-:::
-
-
-::: {.column width="50%"}
-
-
-:::: r-stack
-::: {.fragment .fade-out fragment-index=2}
-![Funciona bien originalmente](imagenes/ejemplo_2_1.png){width="1500px"}
-:::
-
-::: {.fragment .fade-in-then-out fragment-index=3}
-![Siguiente interacción falla (valor mujeres es falso)](imagenes/ejemplo_2_2.png){width="1500px"}
-:::
-
-
-::: {.fragment .fade-in fragment-index=4}
-![Vemos que herramienta recibe mensaje libre de contexto](imagenes/ejemplo_2_3.png){width="1500px"}
-:::
-
-
-::::
-
-:::
-::::
 ## Desafíos
 
 **Escalabilidad**
@@ -398,10 +204,19 @@ Y ahora veremos [cómo funciona en la práctica](http://10.0.40.64:3030/)
 ::: {.incremental}
 - **Ampliar cobertura**: Expandir el número de indicadores disponibles
 - **Desarrollo de API**: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas
-- **Protocolo MCP**: Evaluar la implementación de Model Context Protocol (MCP) para las herramientas
 - **Más pruebas de seguridad**: Tenemos que asegurarnos que en una gran mayoría de casos
   el chatbot no entregue información inventada.
 :::
+
+## Discusión
+
+- ¿Es posible replicar esta arquitectura en Azure?
+
+- ¿Sería una posibilidad reemplazar modelos open source con modelos privados a través de sus APIs? 
+
+- ¿Qué adecuaciones habría que hacer?
+
+- ¿Cuál es el horizonte de financiamiento?
 
 ## { .portada #cierre}
 
