@@ -15,24 +15,25 @@ format:
 </div>
 
 <div class="title-area">
-  <h1>Presentaciones internas: Chatbot factual</h1>
+  <h1> Chatbot factual</h1>
   
   <h2>Unidad de Gobierno de Datos</h2>
   
-  <p><strong>30 de octubre 2025</strong></p>
+  <p><strong>09 de enero 2026</strong></p>
 </div>
 
 
 ## Contenidos 
 
 
-- Arquitectura
-  - Open-WebUI
-  - Ollama
-  - PostgreSQL
-- Desafíos
+<!-- - Arquitectura -->
+<!--   - Open-WebUI -->
+<!--   - Ollama -->
+<!--   - PostgreSQL -->
+- Idea
+- Indicadores disponibles ENUSC
 - Demostración en vivo
-- Próximos pasos
+<!-- - Próximos pasos -->
 
 
 ## Idea
@@ -44,179 +45,186 @@ format:
 - Combina la interacción natural de un chatbot con la precisión de datos oficiales
 
 
-## Arquitectura
+## Indicadores disponibles ENUSC
 
-:::: {.columns}
+Tenemos los siguientes indicadores de ENUSC disponibles:
 
-::: {.column width="30%"}
-**Solución basada en contenedores Docker**
+- Percepción de aumento de la delincuencia en el país (Años: 2018-2024, grupos: nacional, región, sexo)
+- Victimización de hogares por delitos de mayor connotación social (Años: 2018-2022, grupos: nacional, región)
+- Victimización de hogares por delitos violentos (Años: 2023-2024, grupos: nacional, región)
+- Victimización de personas por delitos violentos (Años: 2023-2024, grupos: nacional, región, sexo)
 
-Tres componentes principales que interactúan entre sí:
+Lo que queremos pedirles es que hagan pruebas con el chatbot en torno a estos indicadores y nos den comentarios generales
+respecto a la expriencia de uso, posibles errores, cosas que podrían esperar distinto o que les gustaría ver.
 
-- **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
-- **Ollama**: Motor de inferencia para los modelos de lenguaje
-- **PostgreSQL**: Base de datos para almacenamiento persistente
-:::
+<!-- ## Arquitectura -->
 
-::: {.column width="70%"}
-![](imagenes/diagrama_chatbot_factual.png){width=100% height=auto}
-:::
+<!-- :::: {.columns} -->
 
-::::
+<!-- ::: {.column width="30%"} -->
+<!-- **Solución basada en contenedores Docker** -->
 
-## Open-WebUI
+<!-- Tres componentes principales que interactúan entre sí: -->
 
-:::: columns
+<!-- - **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot -->
+<!-- - **Ollama**: Motor de inferencia para los modelos de lenguaje -->
+<!-- - **PostgreSQL**: Base de datos para almacenamiento persistente -->
+<!-- ::: -->
 
-::: {.column width="55%}
-**¿Qué es Open-WebUI?**
+<!-- ::: {.column width="70%"} -->
+<!-- ![](imagenes/diagrama_chatbot_factual.png){width=100% height=auto} -->
+<!-- ::: -->
 
-::: incremental
-- Interfaz web de código abierto diseñada para interactuar con modelos de lenguaje
-- Experiencia similar a ChatGPT pero auto-hospedada (_self-hosted_)
-- Al ser open source, es altamente personalizable y extensible
-:::
+<!-- :::: -->
 
-**Características principales**
+<!-- ## Open-WebUI -->
 
-::: incremental
-- Interfaz de chat intuitiva y moderna
-- Soporte para múltiples modelos simultáneos
-- Sistema de **herramientas (tools)** personalizables basadas en Python  para extender funcionalidades
-- Gestión de usuarios y permisos
-- Historial de conversaciones persistente
-:::
+<!-- :::: columns -->
 
-:::
+<!-- ::: {.column width="55%} -->
+<!-- **¿Qué es Open-WebUI?** -->
 
-::: {.column  width="45%"}
+<!-- ::: incremental -->
+<!-- - Interfaz web de código abierto diseñada para interactuar con modelos de lenguaje -->
+<!-- - Experiencia similar a ChatGPT pero auto-hospedada (_self-hosted_) -->
+<!-- - Al ser open source, es altamente personalizable y extensible -->
+<!-- ::: -->
 
-::: incremental
-**En el proyecto**
+<!-- **Características principales** -->
 
-- Actúa como la capa de presentación del chatbot
-- Permite a los usuarios hacer consultas en lenguaje natural
-- Integra herramientas personalizadas para acceder a datos oficiales
-- Facilita la autenticación y gestión de sesiones
-:::
+<!-- ::: incremental -->
+<!-- - Interfaz de chat intuitiva y moderna -->
+<!-- - Soporte para múltiples modelos simultáneos -->
+<!-- - Sistema de **herramientas (tools)** personalizables basadas en Python  para extender funcionalidades -->
+<!-- - Gestión de usuarios y permisos -->
+<!-- - Historial de conversaciones persistente -->
+<!-- ::: -->
 
-**Ventajas**
+<!-- ::: -->
 
-::: incremental
-- No depende de servicios externos
-- Control total sobre datos y privacidad
-- Muchísimo más sencillo que desarrollar nuestro propio software de chat.
-:::
+<!-- ::: {.column  width="45%"} -->
 
-::: {.align-right}
-![](imagenes/owui.png){height=400px}
-:::
+<!-- ::: incremental -->
+<!-- **En el proyecto** -->
 
-:::
+<!-- - Actúa como la capa de presentación del chatbot -->
+<!-- - Permite a los usuarios hacer consultas en lenguaje natural -->
+<!-- - Integra herramientas personalizadas para acceder a datos oficiales -->
+<!-- - Facilita la autenticación y gestión de sesiones -->
+<!-- ::: -->
 
-::::
+<!-- **Ventajas** -->
 
+<!-- ::: incremental -->
+<!-- - No depende de servicios externos -->
+<!-- - Control total sobre datos y privacidad -->
+<!-- - Muchísimo más sencillo que desarrollar nuestro propio software de chat. -->
+<!-- ::: -->
 
-## Open-WebUI
+<!-- ::: {.align-right} -->
+<!-- ![](imagenes/owui.png){height=400px} -->
+<!-- ::: -->
 
-::: align-center
-![](imagenes/pantallazo_owui.png){height=1000px }
-:::
+<!-- ::: -->
 
-
-## Ollama
-
-:::: columns
-
-::: {.column width="55%"}
-**¿Qué es?**
-
-::: incremental
-- Plataforma de código abierto para ejecutar LLMs localmente
-- Simplifica su descarga, gestión y ejecución
-:::
-
-**Características clave**
-
-::: incremental
-- Soporte para múltiples modelos (Qwen, Llama, Gemma, etc.)
-- Gestión automática de memoria y recursos
-- Optimizaciones de rendimiento para CPUs y GPUs
-- API compatible con OpenAI haciendo fácil su integración
-:::
-
-:::
-
-::: {.column width="45%"}
-
-**En nuestro proyecto**
-
-::: incremental
-- Motor de inferencia que procesa las consultas del usuario
-- Ejecuta el modelo de lenguaje que interpreta preguntas
-- Genera respuestas contextuales basadas en la información disponible
-- Se comunica con Open-WebUI a través de su API
-:::
-
-**Ventajas**
-
-::: incremental
-- Ejecución local sin dependencia de APIs externas 
-- Control sobre versiones de modelos
-- Latencia reducida al eliminar llamadas a servicios remotos
-- Sin límites de uso o costos por token
-:::
-
-::: {.align-right}
-![](imagenes/ollama.png){height=200px}
-:::
-
-:::
-
-::::
-
-## PostgreSQL
-
-- Esta es la estructura de las bases de datos.
-
-![](imagenes/sql_ti.png){height=750px}
-
-- Busca un sistema estándar que permita desagregar datos y contener datos nacionales
-dentro de la misma.
+<!-- :::: -->
 
 
-## Desafíos
+<!-- ## Open-WebUI -->
 
-**Escalabilidad**
+<!-- ::: align-center -->
+<!-- ![](imagenes/pantallazo_owui.png){height=1000px } -->
+<!-- ::: -->
 
-- Cargar un LLM es computacionalmente intensivo
-- Dificultad para servir a múltiples usuarios simultáneos
-- Requiere planificación cuidadosa de recursos
+
+<!-- ## Ollama -->
+
+<!-- :::: columns -->
+
+<!-- ::: {.column width="55%"} -->
+<!-- **¿Qué es?** -->
+
+<!-- ::: incremental -->
+<!-- - Plataforma de código abierto para ejecutar LLMs localmente -->
+<!-- - Simplifica su descarga, gestión y ejecución -->
+<!-- ::: -->
+
+<!-- **Características clave** -->
+
+<!-- ::: incremental -->
+<!-- - Soporte para múltiples modelos (Qwen, Llama, Gemma, etc.) -->
+<!-- - Gestión automática de memoria y recursos -->
+<!-- - Optimizaciones de rendimiento para CPUs y GPUs -->
+<!-- - API compatible con OpenAI haciendo fácil su integración -->
+<!-- ::: -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- **En nuestro proyecto** -->
+
+<!-- ::: incremental -->
+<!-- - Motor de inferencia que procesa las consultas del usuario -->
+<!-- - Ejecuta el modelo de lenguaje que interpreta preguntas -->
+<!-- - Genera respuestas contextuales basadas en la información disponible -->
+<!-- - Se comunica con Open-WebUI a través de su API -->
+<!-- ::: -->
+
+<!-- **Ventajas** -->
+
+<!-- ::: incremental -->
+<!-- - Ejecución local sin dependencia de APIs externas  -->
+<!-- - Control sobre versiones de modelos -->
+<!-- - Latencia reducida al eliminar llamadas a servicios remotos -->
+<!-- - Sin límites de uso o costos por token -->
+<!-- ::: -->
+
+<!-- ::: {.align-right} -->
+<!-- ![](imagenes/ollama.png){height=200px} -->
+<!-- ::: -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+<!-- ## PostgreSQL -->
+
+<!-- - Esta es la estructura de las bases de datos. -->
+
+<!-- ![](imagenes/sql_ti.png){height=750px} -->
+
+<!-- - Busca un sistema estándar que permita desagregar datos y contener datos nacionales -->
+<!-- dentro de la misma. -->
+
+
+<!-- ## Desafíos -->
+
+<!-- **Escalabilidad** -->
+
+<!-- - Cargar un LLM es computacionalmente intensivo -->
+<!-- - Dificultad para servir a múltiples usuarios simultáneos -->
+<!-- - Requiere planificación cuidadosa de recursos -->
 
 ## Demostración en vivo
 
-Y ahora veremos [cómo funciona en la práctica](http://10.0.40.64:3030/)
+Y ahora veremos [cómo funciona en la práctica](http://10.0.40.11:3030/)
 
-## Próximos pasos
+<!-- ## Próximos pasos -->
 
-**Expansión y mejoras**
+<!-- **Expansión y mejoras** -->
 
-::: {.incremental}
-- **Ampliar cobertura**: Expandir el número de indicadores disponibles
-- **Desarrollo de API**: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas
-- **Más pruebas de seguridad**: Tenemos que asegurarnos que en una gran mayoría de casos
-  el chatbot no entregue información inventada.
-:::
+<!-- ::: {.incremental} -->
+<!-- - **Ampliar cobertura**: Expandir el número de indicadores disponibles -->
+<!-- - **Desarrollo de API**: Estudiar la posibilidad de desarrollar una API dedicada para la conexión de herramientas -->
+<!-- - **Más pruebas de seguridad**: Tenemos que asegurarnos que en una gran mayoría de casos -->
+<!--   el chatbot no entregue información inventada. -->
+<!-- ::: -->
 
-## Discusión
+<!-- ## Discusión -->
 
-- ¿Es posible replicar esta arquitectura en Azure?
 
-- ¿Sería una posibilidad reemplazar modelos open source con modelos privados a través de sus APIs? 
 
-- ¿Qué adecuaciones habría que hacer?
-
-- ¿Cuál es el horizonte de financiamiento?
 
 ## { .portada #cierre}
 
