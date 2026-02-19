@@ -31,7 +31,8 @@ format:
 <!--   - Ollama -->
 <!--   - PostgreSQL -->
 - Idea
-- Indicadores disponibles ENUSC
+- Indicadores disponibles
+- Etapas del trabajo
 - Demostración en vivo
 <!-- - Próximos pasos -->
 
@@ -47,7 +48,7 @@ format:
 
 ## Indicadores disponibles ENUSC
 
-Tenemos los siguientes indicadores de ENUSC disponibles:
+Tenemos los siguientes indicadores de disponibles:
 
 - Percepción de aumento de la delincuencia en el país (Años: 2018-2024, grupos: nacional, región, sexo)
 - Victimización de hogares por delitos de mayor connotación social (Años: 2018-2022, grupos: nacional, región)
