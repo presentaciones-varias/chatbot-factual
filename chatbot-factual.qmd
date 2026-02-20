@@ -34,6 +34,7 @@ format:
 - Indicadores disponibles
 - Etapas del trabajo
 - Demostración en vivo
+- Qué nos falta
 <!-- - Próximos pasos -->
 
 
@@ -44,19 +45,59 @@ format:
 - Se le "enseña" a no dar información que no conozca
 - Esto garantizaría respuestas basadas en información verificada y autorizada
 - Combina la interacción natural de un chatbot con la precisión de datos oficiales
+- Utilizamos una estructura de datos que permite una fácil expansión a más indicadores.
 
 
-## Indicadores disponibles ENUSC
+## Indicadores disponibles 
 
-Tenemos los siguientes indicadores de disponibles:
+Tenemos 11 indicadores de disponibles:
 
-- Percepción de aumento de la delincuencia en el país (Años: 2018-2024, grupos: nacional, región, sexo)
-- Victimización de hogares por delitos de mayor connotación social (Años: 2018-2022, grupos: nacional, región)
-- Victimización de hogares por delitos violentos (Años: 2023-2024, grupos: nacional, región)
-- Victimización de personas por delitos violentos (Años: 2023-2024, grupos: nacional, región, sexo)
+**ENUSC:**
 
-Lo que queremos pedirles es que hagan pruebas con el chatbot en torno a estos indicadores y nos den comentarios generales
-respecto a la expriencia de uso, posibles errores, cosas que podrían esperar distinto o que les gustaría ver.
+| Indicador  | Período | Agrupaciones |
+|-----------|-------------|---------|--------------|
+| Percepción de aumento de la delincuencia | 2018-2024 | Nacional, región, sexo |
+| Victimización hogares por delitos mayor connotación | 2018-2022 | Nacional, región |
+| Victimización hogares por delitos violentos | 2023-2024 | Nacional, región |
+| Victimización personas por delitos violentos | 2023-2024 | Nacional, región, sexo |
+
+
+## Indicadores disponibles
+
+Tenemos 11 indicadores de disponibles:
+
+**ENE:**
+
+- Período: 2010 - 2025
+- Agrupaciones: nacional y sexo
+- Indicadores:
+  - Población desocupada
+  - Población en edad de trabajar
+  - Personas en la fuerza de trabajo
+  - Población ocupada
+  - Tasa de desocupación
+  - Tasa de ocupación
+  - Tasa de participación laboral
+  
+## Indicadores disponibles
+
+Un vistazo a los datos
+
+![](imagenes/ejemplo_datos.png)
+
+## Etapas del trabajo
+
+- Para el desarrollo de este piloto hemos pasado por diversas etapas.
+
+- Fase I:
+  - Desarrollo inicial con infraestructura INE
+  - Planificación de estructura de datos para consumo de LLM
+  - Pruebas de funcionalidad
+- Fase II:
+  - Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos
+  - Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC
+  - Incorporación de comentarios y otras mejoras a la aplicación.
+  - Adaptación de la aplicación para conexión a proveedores externos.
 
 <!-- ## Arquitectura -->
 
@@ -209,7 +250,14 @@ respecto a la expriencia de uso, posibles errores, cosas que podrían esperar di
 
 ## Demostración en vivo
 
-Y ahora veremos [cómo funciona en la práctica](http://10.0.40.11:3030/)
+Y ahora veremos [cómo funciona en la práctica](http://10.0.40.11:3031/)
+
+## Qué nos falta
+
+- Presupuesto para poder servir múltiples usuarios
+- Implementación de feedback faltantes.
+- Mejoras internas para mayor robustez en las respuestas
+- Implementación de medidas de seguridad de cara a la producción.
 
 <!-- ## Próximos pasos -->
 

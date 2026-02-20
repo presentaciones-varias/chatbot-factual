@@ -152,8 +152,10 @@ Unidad de Gobierno de Datos
 <!--   - PostgreSQL -->
 <ul>
 <li>Idea</li>
-<li>Indicadores disponibles ENUSC</li>
-<li>Demostración en vivo <!-- - Próximos pasos --></li>
+<li>Indicadores disponibles</li>
+<li>Etapas del trabajo</li>
+<li>Demostración en vivo</li>
+<li>Qué nos falta <!-- - Próximos pasos --></li>
 </ul>
 </section>
 <section id="idea" class="slide level2">
@@ -163,18 +165,98 @@ Unidad de Gobierno de Datos
 <li>Se le “enseña” a no dar información que no conozca</li>
 <li>Esto garantizaría respuestas basadas en información verificada y autorizada</li>
 <li>Combina la interacción natural de un chatbot con la precisión de datos oficiales</li>
+<li>Utilizamos una estructura de datos que permite una fácil expansión a más indicadores.</li>
 </ul>
 </section>
-<section id="indicadores-disponibles-enusc" class="slide level2">
-<h2>Indicadores disponibles ENUSC</h2>
-<p>Tenemos los siguientes indicadores de ENUSC disponibles:</p>
+<section id="indicadores-disponibles" class="slide level2">
+<h2>Indicadores disponibles</h2>
+<p>Tenemos 11 indicadores de disponibles:</p>
+<p><strong>ENUSC:</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 27%">
+<col style="width: 19%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicador</th>
+<th>Período</th>
+<th>Agrupaciones</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Percepción de aumento de la delincuencia</td>
+<td>2018-2024</td>
+<td>Nacional, región, sexo</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Victimización hogares por delitos mayor connotación</td>
+<td>2018-2022</td>
+<td>Nacional, región</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Victimización hogares por delitos violentos</td>
+<td>2023-2024</td>
+<td>Nacional, región</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Victimización personas por delitos violentos</td>
+<td>2023-2024</td>
+<td>Nacional, región, sexo</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="indicadores-disponibles-1" class="slide level2">
+<h2>Indicadores disponibles</h2>
+<p>Tenemos 11 indicadores de disponibles:</p>
+<p><strong>ENE:</strong></p>
 <ul>
-<li>Percepción de aumento de la delincuencia en el país (Años: 2018-2024, grupos: nacional, región, sexo)</li>
-<li>Victimización de hogares por delitos de mayor connotación social (Años: 2018-2022, grupos: nacional, región)</li>
-<li>Victimización de hogares por delitos violentos (Años: 2023-2024, grupos: nacional, región)</li>
-<li>Victimización de personas por delitos violentos (Años: 2023-2024, grupos: nacional, región, sexo)</li>
+<li>Período: 2010 - 2025</li>
+<li>Agrupaciones: nacional y sexo</li>
+<li>Indicadores:
+<ul>
+<li>Población desocupada</li>
+<li>Población en edad de trabajar</li>
+<li>Personas en la fuerza de trabajo</li>
+<li>Población ocupada</li>
+<li>Tasa de desocupación</li>
+<li>Tasa de ocupación</li>
+<li>Tasa de participación laboral</li>
+</ul></li>
 </ul>
-<p>Lo que queremos pedirles es que hagan pruebas con el chatbot en torno a estos indicadores y nos den comentarios generales respecto a la expriencia de uso, posibles errores, cosas que podrían esperar distinto o que les gustaría ver.</p>
+</section>
+<section id="indicadores-disponibles-2" class="slide level2">
+<h2>Indicadores disponibles</h2>
+<p>Un vistazo a los datos</p>
+
+<img data-src="imagenes/ejemplo_datos.png" class="r-stretch"></section>
+<section id="etapas-del-trabajo" class="slide level2">
+<h2>Etapas del trabajo</h2>
+<ul>
+<li><p>Para el desarrollo de este piloto hemos pasado por diversas etapas.</p></li>
+<li><p>Fase I:</p>
+<ul>
+<li>Desarrollo inicial con infraestructura INE</li>
+<li>Planificación de estructura de datos para consumo de LLM</li>
+<li>Pruebas de funcionalidad</li>
+</ul></li>
+<li><p>Fase II:</p>
+<ul>
+<li>Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos</li>
+<li>Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC</li>
+<li>Incorporación de comentarios y otras mejoras a la aplicación.</li>
+<li>Adaptación de la aplicación para conexión a proveedores externos.</li>
+</ul></li>
+</ul>
 <!-- ## Arquitectura -->
 <!-- :::: {.columns} -->
 <!-- ::: {.column width="30%"} -->
@@ -278,7 +360,16 @@ Unidad de Gobierno de Datos
 </section>
 <section id="demostración-en-vivo" class="slide level2">
 <h2>Demostración en vivo</h2>
-<p>Y ahora veremos <a href="http://10.0.40.11:3030/">cómo funciona en la práctica</a></p>
+<p>Y ahora veremos <a href="http://10.0.40.11:3031/">cómo funciona en la práctica</a></p>
+</section>
+<section id="qué-nos-falta" class="slide level2">
+<h2>Qué nos falta</h2>
+<ul>
+<li>Presupuesto para poder servir múltiples usuarios</li>
+<li>Implementación de feedback faltantes.</li>
+<li>Mejoras internas para mayor robustez en las respuestas</li>
+<li>Implementación de medidas de seguridad de cara a la producción.</li>
+</ul>
 <!-- ## Próximos pasos -->
 <!-- **Expansión y mejoras** -->
 <!-- ::: {.incremental} -->
