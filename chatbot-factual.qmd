@@ -108,9 +108,9 @@ Un vistazo a los datos
 
 Tres componentes principales que interactúan entre sí:
 
-- **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
-- **Openrouter**: Ruteador de LLMs a la mayoría de proveedores disponibles.
-- **PostgreSQL**: Base de datos para almacenamiento persistente
+- ![](imagenes/owui.png){height=80px .icon}  **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
+- ![](imagenes/openrouter-icon.svg){height=80px .icon} **Openrouter**: Ruteador de LLMs a la mayoría de proveedores disponibles.
+- ![](imagenes/postgresql.png){height=80px .icon} **PostgreSQL**: Base de datos para almacenamiento persistente
 :::
 
 ::: {.column width="70%"}
