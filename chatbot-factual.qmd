@@ -99,25 +99,25 @@ Un vistazo a los datos
   - Incorporación de comentarios y otras mejoras a la aplicación.
   - Adaptación de la aplicación para conexión a proveedores externos.
 
-<!-- ## Arquitectura -->
+## Arquitectura
 
-<!-- :::: {.columns} -->
+:::: {.columns}
 
-<!-- ::: {.column width="30%"} -->
-<!-- **Solución basada en contenedores Docker** -->
+::: {.column width="30%"}
+**Solución basada en contenedores Docker**
 
-<!-- Tres componentes principales que interactúan entre sí: -->
+Tres componentes principales que interactúan entre sí:
 
-<!-- - **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot -->
-<!-- - **Ollama**: Motor de inferencia para los modelos de lenguaje -->
-<!-- - **PostgreSQL**: Base de datos para almacenamiento persistente -->
-<!-- ::: -->
+- **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
+- **Openrouter**: Ruteador de LLMs a la mayoría de proveedores disponibles.
+- **PostgreSQL**: Base de datos para almacenamiento persistente
+:::
 
-<!-- ::: {.column width="70%"} -->
-<!-- ![](imagenes/diagrama_chatbot_factual.png){width=100% height=auto} -->
-<!-- ::: -->
+::: {.column width="70%"}
+![](imagenes/diagrama-chatbot.png){width=100% height=auto}
+:::
 
-<!-- :::: -->
+::::
 
 <!-- ## Open-WebUI -->
 
