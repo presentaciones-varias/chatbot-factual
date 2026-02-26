@@ -83,7 +83,7 @@ Generamos tres componentes principales que interactúan entre sí:
 
 ## Cómo se ve
 
-![](imagenes/interfaz_owui.png){ width=100%}
+![](imagenes/interfaz_owui.png){style="width: calc(100% + 2 * var(--content-pad-i)); margin-left: calc(-1 * var(--content-pad-i)); display: block;"}
 
 
 ## Etapas del trabajo
