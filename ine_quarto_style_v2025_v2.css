@@ -186,11 +186,15 @@
   place-self: center;        /* si la slide usa grid/flex, centra también */
 
   /* límites y escala */
-  max-width: 60%;
+  max-width: 80%;
   max-height: auto;
   width: auto;
   height: auto;
 }
+
+.reveal .slides section .r-stretch.narrow {
+    max-width: 60%; /* or whatever lower value you want */
+  }
 
 /* 2) Para imágenes y videos: que se VEAN centrados dentro de su caja */
 .reveal .slides section img.r-stretch,

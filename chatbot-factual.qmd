@@ -53,12 +53,13 @@ format:
 
 ## Solución { .larger-text }
 
+::: incremental
 - Desarrollamos un chatbot que se conecta **directamente a datos oficiales**
 - Se le "enseña" a no dar información que no conozca
 - Esto garantizaría respuestas basadas en **información verificada y autorizada**
 - Combina la **interacción natural** de un chatbot con la **precisión** de datos oficiales
 - Utilizamos una estructura de datos que permite una **fácil expansión a más indicadores**.
-
+:::
 
 
 ## Arquitectura
@@ -81,24 +82,75 @@ Generamos tres componentes principales que interactúan entre sí:
 
 ::::
 
+## Qué son las herramientas
+
+:::: columns
+
+::: {.column width="50%"}
+
+::: fragment
+Las herramientas son la pieza clave para que esta arquitectura funcione.
+:::
+
+::: fragment
+No es más que código de Python que la LLM puede correr para obtener cierto resultado.
+:::
+
+::: incremental
+
+::: fragment
+El desafío consiste en que la LLM entienda **cuándo** y **cómo** correr este código y 
+que el código mismo solo pueda correrse **de forma segura**. 
+:::
+
+  - El código y las prompt deben diseñarse cuidadosamente en torno a estos desafíos.
+  - Queremos minimizar la responsabilidad de la LLM: mientras más podamos gestionar con
+  código, menor chance de error.
+
+:::
+
+:::
+
+:::  {.column width="50%}
+
+![](imagenes/owui_tool.png){width=70%}
+:::
+
+::::
+
 ## Cómo se ve
 
-![](imagenes/interfaz_owui.png){style="width: calc(100% + 2 * var(--content-pad-i)); margin-left: calc(-1 * var(--content-pad-i)); display: block;"}
+![](imagenes/interfaz_owui.png)
 
 
 ## Etapas del trabajo
 
-- Para el desarrollo de este piloto hemos pasado por diversas etapas.
+Para el desarrollo de este piloto hemos pasado por diversas etapas.
 
-- Fase I:
+::: fragment
+
+**Fase I: estudio y desarrollo prototipo inicial**
+
+  - Estudio de tecnologías disponibles
   - Desarrollo inicial con infraestructura INE
   - Planificación de estructura de datos para consumo de LLM
+  - Recolección de indicadores iniciales (ENE)
   - Pruebas de funcionalidad
-- Fase II:
+
+:::
+
+::: fragment
+**Fase II: refinamiento prototipo**
+
+  - Primera expansión de indicadores (ENUSC)
+  - Implementación estructura de datos actual.
   - Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos
   - Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC
   - Incorporación de comentarios y otras mejoras a la aplicación.
   - Adaptación de la aplicación para conexión a proveedores externos.
+
+:::
+
 
 ## Indicadores disponibles 
 
@@ -135,7 +187,7 @@ Tenemos 11 indicadores de disponibles:
 
 Un vistazo a los datos
 
-![](imagenes/ejemplo_datos.png)
+![](imagenes/ejemplo_datos.png){.r-stretch .narrow}
 
 
 
@@ -277,7 +329,9 @@ Y ahora veremos [cómo funciona en la práctica](http://10.0.40.11:3031/)
 
 - Presupuesto para poder servir múltiples usuarios
 
-- Implementación de feedback faltantes.
+- **Expandir indicadores disponibles.**
+
+- **Implementación de feedback faltantes.**
 
 - Mejoras internas para mayor robustez en las respuestas
 
