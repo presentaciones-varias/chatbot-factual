@@ -290,3 +290,9 @@ Settings for text format
   display: inline-block;
   margin-left: auto;
 }
+
+/* Slides with larger body text */
+.reveal section.larger-text li,
+.reveal section.larger-text p {
+  font-size: 3.5cqh;
+}

@@ -6,6 +6,7 @@ format:
     width: 2560      # ancho lógico de la slide
     height: 1440     # alto lógico de la slide
     margin: 0
+    slide-number: c/t
 ---
 
 ## { .portada  #portada}
@@ -38,7 +39,7 @@ format:
 <!-- - Próximos pasos -->
 
 
-## Idea
+## Idea { .larger-text }
 
 
 - Desarrollamos un chatbot que se conecta **directamente a datos oficiales**
@@ -252,7 +253,7 @@ Tres componentes principales que interactúan entre sí:
 
 Y ahora veremos [cómo funciona en la práctica](http://10.0.40.11:3031/)
 
-## Qué nos falta
+## Qué nos falta { .larger-text }
 
 - Presupuesto para poder servir múltiples usuarios
 - Implementación de feedback faltantes.
