@@ -26,28 +26,79 @@ format:
 
 ## Contenidos 
 
-
-<!-- - Arquitectura -->
+- Motivación
+- Arquitectura
+- Cómo se ve
 <!--   - Open-WebUI -->
 <!--   - Ollama -->
 <!--   - PostgreSQL -->
-- Idea
-- Indicadores disponibles
 - Etapas del trabajo
+- Indicadores disponibles
+
 - Demostración en vivo
 - Qué nos falta
 <!-- - Próximos pasos -->
 
 
-## Idea { .larger-text }
+## Motivación { .larger-text }
 
+
+::: incremental
+- Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o **"alucinar"**
+- Para usuarios que buscan **estadísticas oficiales**, esto representa un riesgo significativo
+- La **confiabilidad de los datos** es fundamental en nuestro contexto
+:::
+
+
+
+## Solución { .larger-text }
 
 - Desarrollamos un chatbot que se conecta **directamente a datos oficiales**
 - Se le "enseña" a no dar información que no conozca
-- Esto garantizaría respuestas basadas en información verificada y autorizada
-- Combina la interacción natural de un chatbot con la precisión de datos oficiales
-- Utilizamos una estructura de datos que permite una fácil expansión a más indicadores.
+- Esto garantizaría respuestas basadas en **información verificada y autorizada**
+- Combina la **interacción natural** de un chatbot con la **precisión** de datos oficiales
+- Utilizamos una estructura de datos que permite una **fácil expansión a más indicadores**.
 
+
+
+## Arquitectura
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
+
+Generamos tres componentes principales que interactúan entre sí:
+
+- ![](imagenes/owui.png){height=80px .icon}  **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
+- ![](imagenes/openrouter-icon.svg){height=80px .icon} **Openrouter**: Ruteador de LLMs a la mayoría de proveedores disponibles.
+- ![](imagenes/postgresql.png){height=80px .icon} **PostgreSQL**: Base de datos para almacenamiento persistente
+:::
+
+::: {.column width="70%"}
+![](imagenes/diagrama-chatbot.png){width=100% height=auto}
+:::
+
+::::
+
+## Cómo se ve
+
+![](imagenes/interfaz_owui.png){ width=100%}
+
+
+## Etapas del trabajo
+
+- Para el desarrollo de este piloto hemos pasado por diversas etapas.
+
+- Fase I:
+  - Desarrollo inicial con infraestructura INE
+  - Planificación de estructura de datos para consumo de LLM
+  - Pruebas de funcionalidad
+- Fase II:
+  - Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos
+  - Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC
+  - Incorporación de comentarios y otras mejoras a la aplicación.
+  - Adaptación de la aplicación para conexión a proveedores externos.
 
 ## Indicadores disponibles 
 
@@ -86,39 +137,8 @@ Un vistazo a los datos
 
 ![](imagenes/ejemplo_datos.png)
 
-## Etapas del trabajo
 
-- Para el desarrollo de este piloto hemos pasado por diversas etapas.
 
-- Fase I:
-  - Desarrollo inicial con infraestructura INE
-  - Planificación de estructura de datos para consumo de LLM
-  - Pruebas de funcionalidad
-- Fase II:
-  - Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos
-  - Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC
-  - Incorporación de comentarios y otras mejoras a la aplicación.
-  - Adaptación de la aplicación para conexión a proveedores externos.
-
-## Arquitectura
-
-:::: {.columns}
-
-::: {.column width="30%"}
-**Solución basada en contenedores Docker**
-
-Tres componentes principales que interactúan entre sí:
-
-- ![](imagenes/owui.png){height=80px .icon}  **Open-WebUI**: Interfaz de usuario para la interacción con el chatbot
-- ![](imagenes/openrouter-icon.svg){height=80px .icon} **Openrouter**: Ruteador de LLMs a la mayoría de proveedores disponibles.
-- ![](imagenes/postgresql.png){height=80px .icon} **PostgreSQL**: Base de datos para almacenamiento persistente
-:::
-
-::: {.column width="70%"}
-![](imagenes/diagrama-chatbot.png){width=100% height=auto}
-:::
-
-::::
 
 <!-- ## Open-WebUI -->
 
@@ -256,8 +276,11 @@ Y ahora veremos [cómo funciona en la práctica](http://10.0.40.11:3031/)
 ## Qué nos falta { .larger-text }
 
 - Presupuesto para poder servir múltiples usuarios
+
 - Implementación de feedback faltantes.
+
 - Mejoras internas para mayor robustez en las respuestas
+
 - Implementación de medidas de seguridad de cara a la producción.
 
 <!-- ## Próximos pasos -->

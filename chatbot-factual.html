@@ -146,26 +146,69 @@ Unidad de Gobierno de Datos
 </section>
 <section id="contenidos" class="slide level2">
 <h2>Contenidos</h2>
-<!-- - Arquitectura -->
-<!--   - Open-WebUI -->
-<!--   - Ollama -->
-<!--   - PostgreSQL -->
 <ul>
-<li>Idea</li>
-<li>Indicadores disponibles</li>
-<li>Etapas del trabajo</li>
-<li>Demostración en vivo</li>
-<li>Qué nos falta <!-- - Próximos pasos --></li>
+<li><p>Motivación</p></li>
+<li><p>Arquitectura</p></li>
+<li><p>Cómo se ve <!--   - Open-WebUI --> <!--   - Ollama --> <!--   - PostgreSQL --></p></li>
+<li><p>Etapas del trabajo</p></li>
+<li><p>Indicadores disponibles</p></li>
+<li><p>Demostración en vivo</p></li>
+<li><p>Qué nos falta <!-- - Próximos pasos --></p></li>
 </ul>
 </section>
-<section id="idea" class="slide level2">
-<h2>Idea</h2>
+<section id="motivación" class="slide level2 larger-text">
+<h2>Motivación</h2>
+<ul>
+<li class="fragment">Sabemos que los chatbots basados en LLMs tienden a generar información inexacta o <strong>“alucinar”</strong></li>
+<li class="fragment">Para usuarios que buscan <strong>estadísticas oficiales</strong>, esto representa un riesgo significativo</li>
+<li class="fragment">La <strong>confiabilidad de los datos</strong> es fundamental en nuestro contexto</li>
+</ul>
+</section>
+<section id="solución" class="slide level2 larger-text">
+<h2>Solución</h2>
 <ul>
 <li>Desarrollamos un chatbot que se conecta <strong>directamente a datos oficiales</strong></li>
 <li>Se le “enseña” a no dar información que no conozca</li>
-<li>Esto garantizaría respuestas basadas en información verificada y autorizada</li>
-<li>Combina la interacción natural de un chatbot con la precisión de datos oficiales</li>
-<li>Utilizamos una estructura de datos que permite una fácil expansión a más indicadores.</li>
+<li>Esto garantizaría respuestas basadas en <strong>información verificada y autorizada</strong></li>
+<li>Combina la <strong>interacción natural</strong> de un chatbot con la <strong>precisión</strong> de datos oficiales</li>
+<li>Utilizamos una estructura de datos que permite una <strong>fácil expansión a más indicadores</strong>.</li>
+</ul>
+</section>
+<section id="arquitectura" class="slide level2">
+<h2>Arquitectura</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>Generamos tres componentes principales que interactúan entre sí:</p>
+<ul>
+<li><img data-src="imagenes/owui.png" class="icon" height="80"> <strong>Open-WebUI</strong>: Interfaz de usuario para la interacción con el chatbot</li>
+<li><img data-src="imagenes/openrouter-icon.svg" class="icon" height="80"> <strong>Openrouter</strong>: Ruteador de LLMs a la mayoría de proveedores disponibles.</li>
+<li><img data-src="imagenes/postgresql.png" class="icon" height="80"> <strong>PostgreSQL</strong>: Base de datos para almacenamiento persistente</li>
+</ul>
+</div><div class="column" style="width:70%;">
+<p><img data-src="imagenes/diagrama-chatbot.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="cómo-se-ve" class="slide level2">
+<h2>Cómo se ve</h2>
+
+<img data-src="imagenes/interfaz_owui.png" style="width:100.0%" class="r-stretch"></section>
+<section id="etapas-del-trabajo" class="slide level2">
+<h2>Etapas del trabajo</h2>
+<ul>
+<li><p>Para el desarrollo de este piloto hemos pasado por diversas etapas.</p></li>
+<li><p>Fase I:</p>
+<ul>
+<li>Desarrollo inicial con infraestructura INE</li>
+<li>Planificación de estructura de datos para consumo de LLM</li>
+<li>Pruebas de funcionalidad</li>
+</ul></li>
+<li><p>Fase II:</p>
+<ul>
+<li>Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos</li>
+<li>Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC</li>
+<li>Incorporación de comentarios y otras mejoras a la aplicación.</li>
+<li>Adaptación de la aplicación para conexión a proveedores externos.</li>
+</ul></li>
 </ul>
 </section>
 <section id="indicadores-disponibles" class="slide level2">
@@ -238,40 +281,6 @@ Unidad de Gobierno de Datos
 <h2>Indicadores disponibles</h2>
 <p>Un vistazo a los datos</p>
 
-<img data-src="imagenes/ejemplo_datos.png" class="r-stretch"></section>
-<section id="etapas-del-trabajo" class="slide level2">
-<h2>Etapas del trabajo</h2>
-<ul>
-<li><p>Para el desarrollo de este piloto hemos pasado por diversas etapas.</p></li>
-<li><p>Fase I:</p>
-<ul>
-<li>Desarrollo inicial con infraestructura INE</li>
-<li>Planificación de estructura de datos para consumo de LLM</li>
-<li>Pruebas de funcionalidad</li>
-</ul></li>
-<li><p>Fase II:</p>
-<ul>
-<li>Pruebas internas de funcionalidad y recolección de feedback del equipo de Ciencia de Datos</li>
-<li>Pruebas internas de funcionalidad y recolección de feedback del equipo de ENUSC</li>
-<li>Incorporación de comentarios y otras mejoras a la aplicación.</li>
-<li>Adaptación de la aplicación para conexión a proveedores externos.</li>
-</ul></li>
-</ul>
-</section>
-<section id="arquitectura" class="slide level2">
-<h2>Arquitectura</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><strong>Solución basada en contenedores Docker</strong></p>
-<p>Tres componentes principales que interactúan entre sí:</p>
-<ul>
-<li><img data-src="imagenes/owui.png" class="icon" height="80"> <strong>Open-WebUI</strong>: Interfaz de usuario para la interacción con el chatbot</li>
-<li><img data-src="imagenes/openrouter-icon.svg" class="icon" height="80"> <strong>Openrouter</strong>: Ruteador de LLMs a la mayoría de proveedores disponibles.</li>
-<li><img data-src="imagenes/postgresql.png" class="icon" height="80"> <strong>PostgreSQL</strong>: Base de datos para almacenamiento persistente</li>
-</ul>
-</div><div class="column" style="width:70%;">
-<p><img data-src="imagenes/diagrama-chatbot.png" style="width:100.0%"></p>
-</div></div>
 <!-- ## Open-WebUI -->
 <!-- :::: columns -->
 <!-- ::: {.column width="55%} -->
@@ -359,18 +368,18 @@ Unidad de Gobierno de Datos
 <!-- - Cargar un LLM es computacionalmente intensivo -->
 <!-- - Dificultad para servir a múltiples usuarios simultáneos -->
 <!-- - Requiere planificación cuidadosa de recursos -->
-</section>
+<img data-src="imagenes/ejemplo_datos.png" class="r-stretch"></section>
 <section id="demostración-en-vivo" class="slide level2">
 <h2>Demostración en vivo</h2>
 <p>Y ahora veremos <a href="http://10.0.40.11:3031/">cómo funciona en la práctica</a></p>
 </section>
-<section id="qué-nos-falta" class="slide level2">
+<section id="qué-nos-falta" class="slide level2 larger-text">
 <h2>Qué nos falta</h2>
 <ul>
-<li>Presupuesto para poder servir múltiples usuarios</li>
-<li>Implementación de feedback faltantes.</li>
-<li>Mejoras internas para mayor robustez en las respuestas</li>
-<li>Implementación de medidas de seguridad de cara a la producción.</li>
+<li><p>Presupuesto para poder servir múltiples usuarios</p></li>
+<li><p>Implementación de feedback faltantes.</p></li>
+<li><p>Mejoras internas para mayor robustez en las respuestas</p></li>
+<li><p>Implementación de medidas de seguridad de cara a la producción.</p></li>
 </ul>
 <!-- ## Próximos pasos -->
 <!-- **Expansión y mejoras** -->
@@ -456,7 +465,7 @@ Unidad de Gobierno de Datos
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
